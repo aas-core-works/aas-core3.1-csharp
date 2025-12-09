@@ -1,0 +1,12 @@
+{
+  "assetAdministrationShells": [
+    {
+      "assetInformation": {
+        "assetKind": "Role",
+        "globalAssetId": "something_eea66fa1"
+      },
+      "id": null,
+      "modelType": "AssetAdministrationShell"
+    }
+  ]
+}
