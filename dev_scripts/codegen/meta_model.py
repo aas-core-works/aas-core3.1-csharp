@@ -1,4 +1,4 @@
-# Downloaded from: https://raw.githubusercontent.com/aas-core-works/aas-core-meta/899add10ff71eca9dac421c3a171bb909c68cb2c/aas_core_meta/v3_1.py
+# Downloaded from: https://raw.githubusercontent.com/aas-core-works/aas-core-meta/5a498be3a3b56f34af9a90b368cae10ca04e7ae4/aas_core_meta/v3_1.py
 """
 --- WORK IN PROGRESS ---
 Provide an implementation of the Asset Administration Shell (AAS) V3.1.
@@ -278,52 +278,6 @@ def matches_RFC_2396(text: str) -> bool:
     relativeuri = f"({net_path}|{abs_path}|{rel_path})(\\?{query})?"
     uri_reference = f"^({absoluteuri}|{relativeuri})?(\\#{fragment})?$"
     return match(uri_reference, text) is not None
-
-
-# noinspection SpellCheckingInspection
-@verification
-def matches_RFC_8089_path(text: str) -> bool:
-    """
-    Check that :paramref:`text` is a path conforming to the pattern of RFC 8089.
-
-    The definition has been taken from:
-    https://datatracker.ietf.org/doc/html/rfc8089
-
-    :param text: Text to be checked
-    :returns: True if the :paramref:`text` conforms to the pattern
-
-    """
-    h16 = "[0-9A-Fa-f]{1,4}"
-    dec_octet = "([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
-    ipv4address = f"{dec_octet}\\.{dec_octet}\\.{dec_octet}\\.{dec_octet}"
-    ls32 = f"({h16}:{h16}|{ipv4address})"
-    ipv6address = (
-        f"(({h16}:){{6}}{ls32}|::({h16}:){{5}}{ls32}|({h16})?::({h16}:){{4}}"
-        f"{ls32}|(({h16}:)?{h16})?::({h16}:){{3}}{ls32}|(({h16}:){{,2}}{h16})?::"
-        f"({h16}:){{2}}{ls32}|(({h16}:){{,3}}{h16})?::{h16}:{ls32}|(({h16}:){{,4}}"
-        f"{h16})?::{ls32}|(({h16}:){{,5}}{h16})?::{h16}|(({h16}:){{,6}}{h16})?"
-        "::)"
-    )
-    unreserved = "[a-zA-Z0-9\\-._~]"
-    sub_delims = "[!$&'()*+,;=]"
-    ipvfuture = f"[vV][0-9A-Fa-f]+\\.({unreserved}|{sub_delims}|:)+"
-    ip_literal = f"\\[({ipv6address}|{ipvfuture})\\]"
-    pct_encoded = "%[0-9A-Fa-f][0-9A-Fa-f]"
-    reg_name = f"({unreserved}|{pct_encoded}|{sub_delims})*"
-    host = f"({ip_literal}|{ipv4address}|{reg_name})"
-    file_auth = f"(localhost|{host})"
-    pchar = f"({unreserved}|{pct_encoded}|{sub_delims}|[:@])"
-    segment_nz = f"({pchar})+"
-    segment = f"({pchar})*"
-    path_absolute = f"/({segment_nz}(/{segment})*)?"
-    auth_path = f"({file_auth})?{path_absolute}"
-    local_path = f"{path_absolute}"
-    file_hier_part = f"(//{auth_path}|{local_path})"
-    file_scheme = "file"
-    file_uri = f"{file_scheme}:{file_hier_part}"
-
-    pattern = f"^{file_uri}$"
-    return match(pattern, text) is not None
 
 
 # noinspection SpellCheckingInspection
@@ -2279,8 +2233,9 @@ class Asset_information(DBC):
 
     asset_kind: "Asset_kind"
     """
-    Denotes whether the Asset is of kind :attr:`Asset_kind.Type` or
-    :attr:`Asset_kind.Instance`.
+    Denotes whether the Asset is of kind :attr:`Asset_kind.Type`,
+    :attr:`Asset_kind.Instance`, :attr:`Asset_kind.Role`, or
+    :attr:`Asset_kind.Not_applicable`.
     """
 
     global_asset_ID: Optional["Identifier"]
@@ -2305,13 +2260,13 @@ class Asset_information(DBC):
 
     asset_type: Optional["Identifier"]
     """
-    In case :attr:`asset_kind` is applicable the :attr:`asset_type` is the asset ID
-    of the type asset of the asset under consideration
-    as identified by :attr:`global_asset_ID`.
+    In case :attr:`asset_kind` is :attr:`Asset_kind.Not_applicable` the
+    :attr:`asset_type` is the asset ID of the type asset of the asset under
+    consideration as identified by :attr:`global_asset_ID`.
 
     .. note::
 
-        In case :attr:`asset_kind` is "Instance" than the :attr:`asset_type` denotes
+        In case :attr:`asset_kind` is "Instance" then the :attr:`asset_type` denotes
         which "Type" the asset is of. But it is also possible
         to have an :attr:`asset_type` of an asset of kind "Type".
 
@@ -2370,7 +2325,8 @@ class Resource(DBC):
 
 class Asset_kind(Enum):
     """
-    Enumeration for denoting whether an asset is a type asset or an instance asset.
+    Enumeration for denoting whether an asset is a type asset or an instance
+    asset or is a role or whether this kind of classification is not applicable.
     """
 
     Type = "Type"
@@ -2694,6 +2650,12 @@ class AAS_submodel_elements(Enum):
 
 
 # fmt: off
+@invariant(
+    lambda self:
+    not (self.value is not None)
+    or ID_shorts_are_unique(self.value),
+    "ID-shorts of the value must be unique."
+)
 @invariant(
     lambda self:
     not (
@@ -3920,7 +3882,7 @@ class Basic_event_element(Event_element):
         self.inoutput_variables
     ),
     "Constraint AASd-134: For an Operation the ID-short of all values of "
-    "input, output and in/output variables."
+    "input, output and in/output variables shall be unique."
 )
 # fmt: on
 class Operation(Submodel_element):
@@ -5714,4 +5676,4 @@ class Data_specification_IEC_61360(Data_specification_content):
         self.value = value
         self.level_type = level_type
 
-# Downloaded from: https://raw.githubusercontent.com/aas-core-works/aas-core-meta/899add10ff71eca9dac421c3a171bb909c68cb2c/aas_core_meta/v3_1.py
+# Downloaded from: https://raw.githubusercontent.com/aas-core-works/aas-core-meta/5a498be3a3b56f34af9a90b368cae10ca04e7ae4/aas_core_meta/v3_1.py
