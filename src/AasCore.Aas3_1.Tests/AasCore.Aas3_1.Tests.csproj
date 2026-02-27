@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <Configurations>Debug;Release;DebugSlow</Configurations>
         <Platforms>AnyCPU</Platforms>
         <Nullable>enable</Nullable>
-        <TargetFramework>net6.0</TargetFramework>
         <OutputType>Library</OutputType>
         <LangVersion>8</LangVersion>
     </PropertyGroup>

@@ -1,11 +1,20 @@
 Extension
+Extension
 LangStringNameType
+LangStringNameType
+LangStringTextType
 LangStringTextType
 AdministrativeInformation
 Reference
 Key
 Reference
 Key
+Reference
+Key
+Reference
+Key
+Qualifier
+Qualifier
 Qualifier
 EmbeddedDataSpecification
 Reference
@@ -13,4 +22,12 @@ Key
 DataSpecificationIec61360
 LangStringPreferredNameTypeIec61360
 LangStringPreferredNameTypeIec61360
-AasCore.Aas3_1.AnnotatedRelationshipElement with ID-short something3fdd3eb4
+LangStringPreferredNameTypeIec61360
+EmbeddedDataSpecification
+Reference
+Key
+DataSpecificationIec61360
+LangStringPreferredNameTypeIec61360
+LangStringPreferredNameTypeIec61360
+Property
+AnnotatedRelationshipElement

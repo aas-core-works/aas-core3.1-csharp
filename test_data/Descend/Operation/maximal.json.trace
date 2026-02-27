@@ -1,10 +1,19 @@
 Extension
+Extension
 LangStringNameType
+LangStringNameType
+LangStringTextType
 LangStringTextType
 Reference
 Key
 Reference
 Key
+Reference
+Key
+Reference
+Key
+Qualifier
+Qualifier
 Qualifier
 EmbeddedDataSpecification
 Reference
@@ -12,9 +21,22 @@ Key
 DataSpecificationIec61360
 LangStringPreferredNameTypeIec61360
 LangStringPreferredNameTypeIec61360
+LangStringPreferredNameTypeIec61360
+EmbeddedDataSpecification
+Reference
+Key
+DataSpecificationIec61360
+LangStringPreferredNameTypeIec61360
+LangStringPreferredNameTypeIec61360
 OperationVariable
-AasCore.Aas3_1.Entity with ID-short something_c8b0a9a0
+Entity
 OperationVariable
-AasCore.Aas3_1.AnnotatedRelationshipElement with ID-short something_0921a907
+Operation
 OperationVariable
-AasCore.Aas3_1.MultiLanguageProperty with ID-short something_89e4ed5f
+Operation
+OperationVariable
+SubmodelElementList
+OperationVariable
+Capability
+OperationVariable
+Capability

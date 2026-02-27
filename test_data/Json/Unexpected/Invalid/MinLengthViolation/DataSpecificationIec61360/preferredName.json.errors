@@ -1,0 +1,4 @@
+: Invariant violated:
+Preferred name must have at least one item.;
+: Invariant violated:
+Constraint AASc-002: preferred name shall be provided at least in English.

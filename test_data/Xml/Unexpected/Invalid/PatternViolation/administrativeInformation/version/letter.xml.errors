@@ -1,0 +1,4 @@
+version: Invariant violated:
+Version type shall match the version pattern.;
+version: Invariant violated:
+Version type shall have a maximum length of 4 characters.

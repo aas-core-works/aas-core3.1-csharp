@@ -1,10 +1,19 @@
 Extension
+Extension
 LangStringNameType
+LangStringNameType
+LangStringTextType
 LangStringTextType
 Reference
 Key
 Reference
 Key
+Reference
+Key
+Reference
+Key
+Qualifier
+Qualifier
 Qualifier
 EmbeddedDataSpecification
 Reference
@@ -12,4 +21,15 @@ Key
 DataSpecificationIec61360
 LangStringPreferredNameTypeIec61360
 LangStringPreferredNameTypeIec61360
-AasCore.Aas3_1.MultiLanguageProperty with ID-short somethingd2cab823
+LangStringPreferredNameTypeIec61360
+EmbeddedDataSpecification
+Reference
+Key
+DataSpecificationIec61360
+LangStringPreferredNameTypeIec61360
+LangStringPreferredNameTypeIec61360
+Operation
+BasicEventElement
+Reference
+Key
+Key

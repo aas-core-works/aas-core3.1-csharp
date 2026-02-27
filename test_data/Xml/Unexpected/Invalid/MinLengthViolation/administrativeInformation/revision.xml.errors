@@ -1,0 +1,4 @@
+revision: Invariant violated:
+The value must not be empty.;
+revision: Invariant violated:
+Revision type shall match the revision pattern.

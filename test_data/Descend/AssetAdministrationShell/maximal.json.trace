@@ -1,7 +1,17 @@
 Extension
+Extension
+LangStringNameType
 LangStringNameType
 LangStringTextType
+LangStringTextType
 AdministrativeInformation
+EmbeddedDataSpecification
+Reference
+Key
+DataSpecificationIec61360
+LangStringPreferredNameTypeIec61360
+LangStringPreferredNameTypeIec61360
+LangStringPreferredNameTypeIec61360
 EmbeddedDataSpecification
 Reference
 Key
@@ -11,5 +21,7 @@ LangStringPreferredNameTypeIec61360
 Reference
 Key
 AssetInformation
+Reference
+Key
 Reference
 Key

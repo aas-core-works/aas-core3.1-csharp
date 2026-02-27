@@ -1,10 +1,19 @@
 Extension
+Extension
 LangStringNameType
+LangStringNameType
+LangStringTextType
 LangStringTextType
 Reference
 Reference
+Reference
+Reference
 Qualifier
+Qualifier
+Qualifier
+EmbeddedDataSpecification
 EmbeddedDataSpecification
 Reference
 Reference
-AasCore.Aas3_1.MultiLanguageProperty with ID-short something_41aa6b27
+Blob
+File

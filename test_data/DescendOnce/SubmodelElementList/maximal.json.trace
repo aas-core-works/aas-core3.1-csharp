@@ -1,9 +1,18 @@
 Extension
+Extension
 LangStringNameType
+LangStringNameType
+LangStringTextType
 LangStringTextType
 Reference
 Reference
+Reference
+Reference
+Qualifier
+Qualifier
 Qualifier
 EmbeddedDataSpecification
+EmbeddedDataSpecification
 Reference
-AasCore.Aas3_1.Entity with ID-short 
+Property
+Property

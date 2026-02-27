@@ -1,0 +1,8 @@
+: Invariant violated:
+Max must be consistent with the value type.;
+: Invariant violated:
+Min must be consistent with the value type.;
+min: Invariant violated:
+Constraint AASd-130: An attribute with data type 'string' shall consist of these characters only: ^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\U00010000-\U0010FFFF]*$.;
+max: Invariant violated:
+Constraint AASd-130: An attribute with data type 'string' shall consist of these characters only: ^[\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD\U00010000-\U0010FFFF]*$.
