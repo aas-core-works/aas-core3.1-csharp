@@ -103,16 +103,10 @@ def main() -> int:
 
     if Step.REFORMAT in selects and Step.REFORMAT not in skips:
         print("Re-formatting...")
-        reformat_targets = [
-            "codegen/codegen.py",
-            "codegen/download_aas_core_meta_model.py",
-            "continuous_integration_of_dev_scripts",
-            "update_to_aas_core_meta_codegen.py",
-        ]
         if overwrite:
             exit_code = call_and_report(
                 verb="black",
-                cmd=["black"] + reformat_targets,
+                cmd=["black", ".", "--exclude", "codegen"],
                 cwd=src_root,
             )
             if exit_code != 0:
@@ -120,7 +114,7 @@ def main() -> int:
         else:
             exit_code = call_and_report(
                 verb="check with black",
-                cmd=["black", "--check"] + reformat_targets,
+                cmd=["black", "--check", ".", "--exclude", "codegen"],
                 cwd=src_root,
             )
             if exit_code != 0:
@@ -130,17 +124,19 @@ def main() -> int:
 
     if Step.MYPY in selects and Step.MYPY not in skips:
         print("Mypy'ing...")
-        mypy_targets = [
-            "codegen/codegen.py",
-            "codegen/download_aas_core_meta_model.py",
-            "continuous_integration_of_dev_scripts",
-            "update_to_aas_core_meta_codegen.py",
-        ]
         config_file = pathlib.Path("continuous_integration_of_dev_scripts") / "mypy.ini"
 
         exit_code = call_and_report(
             verb="mypy",
-            cmd=["mypy", "--strict", "--config-file", str(config_file)] + mypy_targets,
+            cmd=[
+                "mypy",
+                "--strict",
+                "--config-file",
+                str(config_file),
+                ".",
+                "--exclude",
+                "codegen",
+            ],
             cwd=src_root,
         )
         if exit_code != 0:
@@ -150,17 +146,11 @@ def main() -> int:
 
     if Step.PYLINT in selects and Step.PYLINT not in skips:
         print("Pylint'ing...")
-        pylint_targets = [
-            "codegen/codegen.py",
-            "codegen/download_aas_core_meta_model.py",
-            "continuous_integration_of_dev_scripts",
-            "update_to_aas_core_meta_codegen.py",
-        ]
         rcfile = pathlib.Path("continuous_integration_of_dev_scripts") / "pylint.rc"
 
         exit_code = call_and_report(
             verb="pylint",
-            cmd=["pylint", f"--rcfile={rcfile}"] + pylint_targets,
+            cmd=["pylint", f"--rcfile={rcfile}", ".", "--ignore=codegen"],
             cwd=src_root,
         )
         if exit_code != 0:

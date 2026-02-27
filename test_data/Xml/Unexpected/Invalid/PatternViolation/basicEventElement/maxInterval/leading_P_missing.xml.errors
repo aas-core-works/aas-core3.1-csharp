@@ -1,0 +1,4 @@
+: Invariant violated:
+Max. interval is not applicable for input direction.;
+maxInterval: Invariant violated:
+The value must match the pattern of xs:duration.

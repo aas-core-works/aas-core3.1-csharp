@@ -1,9 +1,18 @@
 Extension
+Extension
 LangStringNameType
+LangStringNameType
+LangStringTextType
 LangStringTextType
 AdministrativeInformation
 Reference
 Reference
+Reference
+Reference
+Qualifier
+Qualifier
 Qualifier
 EmbeddedDataSpecification
-AasCore.Aas3_1.AnnotatedRelationshipElement with ID-short something3fdd3eb4
+EmbeddedDataSpecification
+Property
+AnnotatedRelationshipElement

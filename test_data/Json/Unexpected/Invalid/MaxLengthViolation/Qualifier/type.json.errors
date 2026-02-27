@@ -1,0 +1,2 @@
+type: Invariant violated:
+Name type shall have a maximum length of 128 characters.

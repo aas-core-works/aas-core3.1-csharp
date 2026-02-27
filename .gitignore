@@ -1,4 +1,9 @@
 .idea/
+
+# Dev. scripts
+.venv*/
+*.egg-info
+
 /src/.vs
 *~
 
