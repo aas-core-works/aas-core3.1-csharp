@@ -36,28 +36,31 @@ jobs:
         working-directory: src
         run: powershell .\Check.ps1
 
-      - name: Send to Coveralls
-        working-directory: src
-        env:
-          HEAD_REF: ${{ github.head_ref }}
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: |
-          # At the moment we only run coveralls on main.
-          # However, we leave this legacy logic here in case we introduce
-          # new branching policy or new coverage publishing rules.
-          if (${env:GITHUB_REF}.StartsWith("refs/pull/"))
-          {
-            $branch = ${env:HEAD_REF} -Replace 'refs/heads/', ''
-          }
-          else
-          {
-            $branch = ${env:GITHUB_REF} -Replace 'refs/heads/', ''
-          }
-
-          $commit = $env:GITHUB_SHA
-
-          echo "Branch is: $branch"
-          echo "Commit is: $commit"
-
-          dotnet tool run csmacnz.Coveralls --opencover -i AasCore.Aas3_1.Tests\coverage.opencover.xml --useRelativePaths --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:GITHUB_SHA --commitBranch $BRANCH
+# NOTE (mristin, 2026-02-27):
+# The coveralls.io seems to be down for a longer time, so we are disabling it
+# for the moment.
+#      - name: Send to Coveralls
+#        working-directory: src
+#        env:
+#          HEAD_REF: ${{ github.head_ref }}
+#          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+#        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+#        run: |
+#          # At the moment we only run coveralls on main.
+#          # However, we leave this legacy logic here in case we introduce
+#          # new branching policy or new coverage publishing rules.
+#          if (${env:GITHUB_REF}.StartsWith("refs/pull/"))
+#          {
+#            $branch = ${env:HEAD_REF} -Replace 'refs/heads/', ''
+#          }
+#          else
+#          {
+#            $branch = ${env:GITHUB_REF} -Replace 'refs/heads/', ''
+#          }
+#
+#          $commit = $env:GITHUB_SHA
+#
+#          echo "Branch is: $branch"
+#          echo "Commit is: $commit"
+#
+#          dotnet tool run csmacnz.Coveralls --opencover -i AasCore.Aas3_1.Tests\coverage.opencover.xml --useRelativePaths --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:GITHUB_SHA --commitBranch $BRANCH
