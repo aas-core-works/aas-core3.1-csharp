@@ -74,7 +74,7 @@ public class Program
 
         // Outputs (all on a single line):
         // <?xml version="1.0" encoding="utf-16"?>
-        // <environment xmlns="https://admin-shell.io/aas/3/0">
+        // <environment xmlns="https://admin-shell.io/aas/3/1">
         // <submodels><submodel>
         // <id>some-unique-global-identifier</id>
         // <submodelElements><property><idShort>someProperty</idShort>
@@ -111,7 +111,7 @@ public class Program
     {
         var text = (
             "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-            "<environment xmlns=\"https://admin-shell.io/aas/3/0\">" +
+            "<environment xmlns=\"https://admin-shell.io/aas/3/1\">" +
             "<submodels><submodel>" +
             "<id>some-unique-global-identifier</id>" +
             "<submodelElements><property><idShort>someProperty</idShort>" +
